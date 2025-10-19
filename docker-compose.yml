@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  jupyter:
+    build: .
+    image: xau-usd-forecast
+    container_name: xauusd_jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      # подключаем весь проект, чтобы изменения сразу были видны в контейнере
+      - ./:/app
+    working_dir: /app
+    command: >
+      jupyter lab
+      --ip=0.0.0.0
+      --port=8888
+      --no-browser
+      --allow-root
